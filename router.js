@@ -21,8 +21,15 @@ const routers=[
         component:(resolve)=>require(['./views/cart.vue'],resolve)
     },
     {
+        path:'/login/:loginStatus',
+        meta:{
+            title:'登录注册'
+        },
+        component:(resolve)=>require(['./views/login.vue'],resolve)
+    },
+    {
         path:'*',
-        redirect:'/list'
+        redirect:'/login/login'
     }
 ];
 

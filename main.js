@@ -5,7 +5,6 @@ import Vuex from 'vuex';
 import App from './app.vue';
 import product_data from './product';
 import './style.css';
-import { resolve } from 'url';
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
@@ -42,7 +41,11 @@ const store=new Vuex.Store({
         // 商品列表数据
         productList:[],
         // 购物车数据
-        cartList:[]
+        cartList:[],
+        // 当前用户账号
+        username: window.localStorage.getItem('username'),
+        // 登录状态
+        loginStatus: window.localStorage.getItem('loginStatus')
     },
     getters:{
         brands:state=>{
@@ -84,6 +87,13 @@ const store=new Vuex.Store({
         // 清空购物车
         emptyCart(state){
             state.cartList=[];
+        },
+        getUser(state,username){
+            state.username=username;
+        },
+        getLoginStatus(state, flag){
+            state.loginStatus = flag;
+            window.localStorage.setItem('loginStatus',flag);
         }
     },
     actions:{
